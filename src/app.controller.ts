@@ -10,12 +10,16 @@ export class AppController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   login(@Request() req): any {
-    return { msg: 'Logged In!', data: req.user };
+    return { success: true, message: 'Logged In!', data: req.user };
   }
 
   @UseGuards(AuthenticatedGuard)
   @Get('protected')
   getHello(@Request() req): any {
-    return req.user;
+    return {
+      success: true,
+      message: 'Data Fetched Successfully!',
+      data: req.user,
+    };
   }
 }
